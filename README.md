@@ -11,7 +11,7 @@
 6) [BONUS] Routers Navigation based on user status isUserLoggedIn ? MainApp : Authentication.
 7) [BONUS] Country picker component
 8) [BONUS] Dashboard and side menu after demo login.
-9 [BONUS] UnitTesting, UI Testing (Snapshot)
+9) [BONUS] UnitTesting, UI Testing (Snapshot)
 10) The project is working on both iOS and Android (procedure is documented)
 
 <div>
