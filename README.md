@@ -24,7 +24,7 @@ Please follow the below procedure to run the project.
 This project is developed and compiled on iOS 15.5
 
 1) clone repository
-2) Please delete the yarn.lock and package-lock.json before running clear cache as well by #(pm run reset-cache)
+2) Please delete the yarn.lock and package-lock.json before running clear cache as well by #(npm run reset-cache)
 3) cd to JOLOCOM ASSESSNENT
 4) yarn install
 5) cd ios
