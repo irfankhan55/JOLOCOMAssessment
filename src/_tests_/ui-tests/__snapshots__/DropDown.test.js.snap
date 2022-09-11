@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropDown Testing Render DropDown without Crashing 1`] = `
+<TouchableOpacity
+  onPress={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#101820",
+      "borderColor": "#CCCCCC",
+      "borderRadius": 4,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "height": 50,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "backgroundColor": "#101820",
+        "color": "#999999",
+        "flex": 1,
+        "padding": 10,
+        "textAlign": "left",
+      }
+    }
+  >
+    English (UK)
+  </Text>
+  <ForwardRef(AnimatedComponentWrapper)
+    style={
+      Array [
+        Object {
+          "color": "#CCCCCC",
+          "marginRight": 10,
+        },
+        Object {
+          "transform": Array [
+            Object {
+              "rotate": "0deg",
+            },
+          ],
+        },
+      ]
+    }
+  >
+    <Icon
+      allowFontScaling={false}
+      color="#999999"
+      name="chevron-down"
+      size={20}
+    />
+  </ForwardRef(AnimatedComponentWrapper)>
+</TouchableOpacity>
+`;

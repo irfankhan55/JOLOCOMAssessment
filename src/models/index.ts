@@ -1,0 +1,1 @@
+export { UserViewModel } from './UserViewModel';
