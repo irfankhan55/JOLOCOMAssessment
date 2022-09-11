@@ -34,7 +34,7 @@
 4) react-native : 0.68.0
 
 # Run on iOS (ios-dev): 
-Please follow the below procedure to run the project. 
+Please follow the below procedure to run the project on iOS. 
 This project is developed and compiled on iOS 15.5
 
 1) clone repository
@@ -45,21 +45,30 @@ This project is developed and compiled on iOS 15.5
 6) pod install
 7) cd ..
 8) npm run ios-dev
+9) You can run the project directly in xCode by running Opening "JOLOCOMAssessment.xcworkspace" in iOS folder.
 
 # Run on Android (android-dev):
 Please follow the below procedure to run the project on android
 
 1) clone repository
-2) Please edit (sdk.dir = /Users/irfankhan/Library/Android/sdk) to your skd path
+2) Please edit local.properties file in Android folder. (sdk.dir = /Users/irfankhan/Library/Android/sdk) to your skd path
 3) cd to JOLOCOM ASSESSNENT
-4) yarn install
-5 npm run android-dev
+4) yarn or npm install
+5  npm run android-dev
 
 # Run Tests (npm test): 
-Please follow the below procedure to run the project. 
-This project is developed and compiled on iOS 15.5
+Please follow the below procedure to test the project. 
+there are 5 tests in total.
+
+1) goto "_test_" folder in "src" directory
+2) delete "_snapshots_" from "ui-tests" folder
+3) npm test
 
 
+Thank you for your time, if you face any issues in compiling the project
+Please don't hesitate to send an email at irfank480@gmail.com
+
+Irfan Khan
 
 
 
