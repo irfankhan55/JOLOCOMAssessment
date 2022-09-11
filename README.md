@@ -1,5 +1,19 @@
 # JOLOCOM ASSESSMENT: 
 [Typescript | Hooks() | Redux | Redux-persit | Localization with Redux | Unit Testing "jest" | CustomNavigators, SideMenu]
+
+# Following features are developed.
+
+1) [BONUS] Localization (Multi-lingual) based on the selected language. (en, ge) English and German for now. (Stored in redux-persist)
+2) UI by using functional components and hooks.
+3) [BONUS] : UserInfo form validation and scroll up focused input. (CustomKeyboardAvoidingView)
+4) [BONUS] Redux state management.
+5) [BONUS]Redux-persist (language, email, country, and user).
+6) [BONUS] Routers Navigation based on user status isUserLoggedIn ? MainApp : Authentication.
+7) [BONUS] Country picker component
+8) [BONUS] Dashboard and side menu after demo login.
+9 [BONUS] UnitTesting, UI Testing (Snapshot)
+10) The project is working on both iOS and Android (procedure is documented)
+
 <div>
 
 <img src="https://user-images.githubusercontent.com/46451157/189531057-4b6fe26f-0311-4490-aa76-5618825f89d6.png" width="150" height="300"/>
@@ -19,20 +33,20 @@
 3) react-native-cli : 2.0.1
 4) react-native : 0.68.0
 
-# Run on iOS: 
+# Run on iOS (ios-dev): 
 Please follow the below procedure to run the project. 
 This project is developed and compiled on iOS 15.5
 
 1) clone repository
-2) Please delete the yarn.lock and package-lock.json before running clear cache as well by #(npm run reset-cache)
+2) Please delete the yarn.lock and package-lock.json before running clear cache as well by # (npm run reset-cache)
 3) cd to JOLOCOM ASSESSNENT
-4) yarn install
+4) yarn or npm install
 5) cd ios
 6) pod install
 7) cd ..
 8) npm run ios-dev
 
-# Run on Android
+# Run on Android (android-dev):
 Please follow the below procedure to run the project on android
 
 1) clone repository
@@ -41,15 +55,12 @@ Please follow the below procedure to run the project on android
 4) yarn install
 5 npm run android-dev
 
+# Run Tests (npm test): 
+Please follow the below procedure to run the project. 
+This project is developed and compiled on iOS 15.5
 
-# Following features are developed.
-1) Localization (Multi-lingual) based on the selected language. (en, ge) English and German for now. (Stored in redux-persist)
-2) UI by using functional components and hooks.
-3) Redux state management.
-4) Redux-persist (language, email, country, and user).
-5) Routers Navigation based on user status isUserLoggedIn ? MainApp : Authentication.
-6) Country picker component
-7) Dashboard and side menu after demo login.
+
+
 
 
 
