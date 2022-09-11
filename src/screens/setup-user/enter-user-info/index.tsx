@@ -164,4 +164,4 @@ const EnterEmailPage = () => {
 
   );
 };
-export default EnterEmailPage;
+export  {EnterEmailPage};
