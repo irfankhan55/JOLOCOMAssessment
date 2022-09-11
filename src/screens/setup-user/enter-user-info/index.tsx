@@ -21,7 +21,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 
 
-const EnterEmailPage = () => {
+const EnterUserInfoPage = () => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   
   const [inputs, setInputs] = React.useState({firstName:'', lastName: '', phone: '', email: '', age: ''});
@@ -164,4 +164,4 @@ const EnterEmailPage = () => {
 
   );
 };
-export  {EnterEmailPage};
+export default EnterUserInfoPage;

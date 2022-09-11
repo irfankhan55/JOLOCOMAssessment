@@ -2,7 +2,7 @@ export declare type AuthParamList = {
     HomeScreen: undefined;
     SettingsScreen: undefined;
     SelectLanguagePage: undefined;
-    EnterEmailPage: undefined;
+    EnterUserInfoPage: undefined;
     SelectCountryPage: undefined;
     EmailVerificationPage: undefined
   };

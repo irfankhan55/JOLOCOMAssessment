@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import { IconImage, IconSets } from "../components/atoms";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SelectLanguagePage from '../screens/setup-user/select-language-page';
-import EnterEmailPage from '../screens/setup-user/enter-user-info';
+import EnterUserInfoPage from '../screens/setup-user/enter-user-info';
 import SelectCountryPage from '../screens/setup-user/select-country-page';
 import EmailVerificationPage from '../screens/setup-user/email-verification-page';
 import { AuthParamList } from './types';
@@ -39,7 +39,7 @@ const AuthNavigator = () => {
       screenOptions={{ headerShown: true }}
     >
       <Stack.Screen options={{ headerShown: false }} name="SelectLanguagePage" component={SelectLanguagePage} />
-      <Stack.Screen name="EnterEmailPage" component={EnterEmailPage}
+      <Stack.Screen name="EnterUserInfoPage" component={EnterUserInfoPage}
         options={{
           headerShown: false,
           title: Strings.enterYourEmailAddress,
