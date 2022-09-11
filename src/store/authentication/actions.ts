@@ -98,6 +98,7 @@ function clearAppDataAction() {
 
 const logout = () => async (dispatch: Function, getState: Function) => {
   dispatch(logoutRequestAction());
+
   // Logout from JOLOCOM API
   // const jolocomAPI = new JoloComAPI();
   // jolocomAPI
@@ -108,6 +109,15 @@ const logout = () => async (dispatch: Function, getState: Function) => {
   //   .catch((error) => {
   //     dispatch(logoutErrorAction(error));
   //   });
+
+  try {
+    let user: UserViewModel = new UserViewModel();
+    user.isLoggedIn = false // TODO: Logout from JOLOCOM APi
+    dispatch(loginResponseAction(user));
+    // await saveUserDataAndClearDataIfDiffUser(user.userInitial, dispatch);
+  } catch (error) {
+    dispatch(loginErrorAction(error));
+  }
 };
 
 export { login, logout, loginErrorAction, clearAppDataAction, setUserCountry, setUserEmail, setUserState };

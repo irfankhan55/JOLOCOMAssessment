@@ -15,6 +15,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  continueButton:{
+    marginTop:30,
+    backgroundColor:colors.JOLOCOM_PINK,
+    width:'100%'
+  },
 });
 
 export default styles;

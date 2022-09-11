@@ -9,7 +9,9 @@ export default {
   phoneNumberPlaceHolder: "Phone number ge",
   email: "Email ge",
   continue: "Continue ge",
+  logout: "Log out",
   submitButtonText: "Submit ge",
+  startOver: "Start Over",
   submissionResultSuccessText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
 // Assessment info
   assessmentInfo: "(Localized/Multi-Lingual) Solution for Senior React Native Developer Assessment",

@@ -36,7 +36,7 @@ type MenuIconsMap = {
 
 const menuIconsMap: MenuIconsMap = {
   HomeScreen: {
-    name: 'logo',
+    name: 'logoWhite',
     type: IconSets.LOCAL_ICON
   },
   SettingsScreen: {
