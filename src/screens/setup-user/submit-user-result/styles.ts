@@ -22,6 +22,14 @@ export default StyleSheet.create({
       marginTop:30,
       width:'100%'
     },
+
+    startOverButton:{
+      backgroundColor:colors.JOLOCOM_PRIMARY_INPUT_BG,
+      flexDirection:'column',
+      marginTop:30,
+      width:'100%'
+    },
+
     container: {
       flex:1,
       backgroundColor: colors.JOLOCOM_PRIMARY_WHITE,

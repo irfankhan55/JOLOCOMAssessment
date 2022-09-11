@@ -10,6 +10,7 @@ export default {
   email: "Email",
   continue: "Continue",
   submitButtonText: "Submit",
+  startOver: "Start Over",
   // Assessment info
   assessmentInfo: "(Localized/Multi-Lingual) Solution for Senior React Native Developer Assessment",
   selectYourLanguage: "Please Select your Language",

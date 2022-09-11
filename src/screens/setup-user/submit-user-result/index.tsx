@@ -21,17 +21,21 @@ const UserSubmissionPage = () => {
   }, [navigation]);
 
   return (
-    <SafeAreaView style={{ flex: 1, alignItems:'center', backgroundColor: 'black' }}>
-        <IconImage iconStyle={{ marginTop: 30 }} size={130} name={'verified'} iconSet={IconSets.LOCAL_ICON} />
-        <Text style={{ textAlign: 'center', color: "white", fontSize: 18, padding: 20 }}>{Strings.submissionResultSuccessText}</Text>
-      
-          <PrimaryButton
-            disabled={false}
-            title={Strings.continue}
-            onPress={() => navigation.navigate(Routes.SELECT_COUNTRY_SCREEN)}
-            style={styles.continueButton}
-          />
-     
+    <SafeAreaView style={{ flex: 1, alignItems: 'center', backgroundColor: 'black' }}>
+      <IconImage iconStyle={{ marginTop: 30 }} size={130} name={'verified'} iconSet={IconSets.LOCAL_ICON} />
+      <Text style={{ textAlign: 'center', color: "white", fontSize: 18, padding: 20 }}>{Strings.submissionResultSuccessText}</Text>
+      <PrimaryButton
+        disabled={false}
+        title={Strings.startOver}
+        onPress={() => navigation.goBack()}
+        style={styles.startOverButton}
+      />
+      <PrimaryButton
+        disabled={false}
+        title={Strings.continue}
+        onPress={() => navigation.navigate(Routes.SELECT_COUNTRY_SCREEN)}
+        style={styles.continueButton}
+      />
     </SafeAreaView>
 
 
