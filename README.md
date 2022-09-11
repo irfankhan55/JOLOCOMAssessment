@@ -1,4 +1,5 @@
-# JOLOCOM ASSESSMENT: [Typescript | Hooks() | Redux | Redux-persit | Localization with Redux | Unit Testing "jest" | CustomNavigators, SideMenu]
+# JOLOCOM ASSESSMENT: 
+[Typescript | Hooks() | Redux | Redux-persit | Localization with Redux | Unit Testing "jest" | CustomNavigators, SideMenu]
 <div>
 
 <img src="https://user-images.githubusercontent.com/46451157/189531057-4b6fe26f-0311-4490-aa76-5618825f89d6.png" width="150" height="300"/>
