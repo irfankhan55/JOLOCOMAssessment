@@ -13,7 +13,7 @@ export default {
   // Assessment info
   assessmentInfo: "(Localized/Multi-Lingual) Solution for Senior React Native Developer Assessment",
   selectYourLanguage: "Please Select your Language",
-
+  submissionResultSuccessText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
   enterYourEmailAddress: "Enter your email address",
   demoAccount: 'Demo Account',
   yourEmailAddress: "Your email address",

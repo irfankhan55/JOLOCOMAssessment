@@ -150,7 +150,7 @@ const EnterUserInfoPage = () => {
      
         disabled={!isFormValid}
         title={Strings.submitButtonText}
-        onPress={() => navigation.navigate(Routes.SELECT_COUNTRY_SCREEN)}
+        onPress={() => navigation.navigate(Routes.USER_SUBMISSION_PAGE)}
         style={styles.continueButton}
       />
       </View>

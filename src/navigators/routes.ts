@@ -4,5 +4,6 @@ export default {
   SELECT_LANGUAGE_SCREEN: 'SelectLanguagePage',
   SELECT_COUNTRY_SCREEN: 'SelectCountryPage',
   EMAIL_VERFICATION_PAGE: 'EmailVerificationPage',
-  ENTER_EMAIL_SCREEN: 'EnterEmailPage',
+  ENTER_EMAIL_SCREEN: 'EnterUserInfoPage',
+  USER_SUBMISSION_PAGE: 'UserSubmissionPage',
 };

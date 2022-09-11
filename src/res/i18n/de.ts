@@ -10,6 +10,7 @@ export default {
   email: "Email ge",
   continue: "Continue ge",
   submitButtonText: "Submit ge",
+  submissionResultSuccessText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
 // Assessment info
   assessmentInfo: "(Localized/Multi-Lingual) Solution for Senior React Native Developer Assessment",
 

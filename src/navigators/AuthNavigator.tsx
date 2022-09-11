@@ -4,6 +4,7 @@ import { IconImage, IconSets } from "../components/atoms";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SelectLanguagePage from '../screens/setup-user/select-language-page';
 import EnterUserInfoPage from '../screens/setup-user/enter-user-info';
+import UserSubmissionPage from '../screens/setup-user/submit-user-result';
 import SelectCountryPage from '../screens/setup-user/select-country-page';
 import EmailVerificationPage from '../screens/setup-user/email-verification-page';
 import { AuthParamList } from './types';
@@ -44,6 +45,15 @@ const AuthNavigator = () => {
           headerShown: false,
           title: Strings.enterYourEmailAddress,
           headerStyle: styles.headerStyle,
+          headerLeft: headerLeft,
+          headerRight: headerRight
+        }}
+      />
+     <Stack.Screen name="UserSubmissionPage" component={UserSubmissionPage}
+        options={{
+          headerShown: false,
+          title: Strings.enterYourEmailAddress,
+          headerStyle: [styles.headerStyle],
           headerLeft: headerLeft,
           headerRight: headerRight
         }}
