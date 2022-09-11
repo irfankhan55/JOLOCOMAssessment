@@ -21,7 +21,8 @@
     "test": "jest",
     "lint": "eslint .",
     "build-icons": "node ./scripts/icon-images.js",
-    "reset-cache": "watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* &&  rm -rf $TMPDIR/metro-bundler-cache-* && rm -rf node_modules/ && yarn cache clean --force &&  yarn install && yarn start -- --reset-cache",
+    "reset-cache": "watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* &&  rm -rf $TMPDIR/metro-bundler-cache-* && rm -rf node_modules/ && yarn cache clean --force &&  yarn install && yarn start -- --reset-cache"
+
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.6",
