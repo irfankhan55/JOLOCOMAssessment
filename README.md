@@ -24,13 +24,23 @@ Please follow the below procedure to run the project.
 This project is developed and compiled on iOS 15.5
 
 1) clone repository
-2) Please delete the yarn.lock and package-lock.json before running
+2) Please delete the yarn.lock and package-lock.json before running clear cache as well by #(pm run reset-cache)
 3) cd to JOLOCOM ASSESSNENT
-4) npm install
+4) yarn install
 5) cd ios
 6) pod install
 7) cd ..
 8) npm run ios-dev
+
+# Run on Android
+Please follow the below procedure to run the project on android
+
+1) clone repository
+2) Please edit (sdk.dir = /Users/irfankhan/Library/Android/sdk) to your skd path
+3) cd to JOLOCOM ASSESSNENT
+4) yarn install
+5 npm run android-dev
+
 
 # Following features are developed.
 1) Localization (Multi-lingual) based on the selected language. (en, ge) English and German for now. (Stored in redux-persist)
