@@ -2,8 +2,9 @@ import * as React from "react";
 import {
   Text,
   Animated,
-  Keyboard,
-} from 'react-native';
+  TouchableOpacity, 
+  View 
+} from "react-native"
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Routes from '../../../navigators/routes';
@@ -11,13 +12,11 @@ import { IconImage, IconSets, PrimaryButton, SecondaryInput } from "../../../com
 import styles from "./styles";
 import Strings from "../../../res/i18n";
 import { KeyboardAwareView } from "../../../components/atoms/keyboard-aware-view";
-import { setUserEmail } from '../../../store/authentication/actions';
 import { useDispatch } from "react-redux";
 import Utils from '../../../utilities/ValidationUtils'
 import { ScrollView } from "react-native-gesture-handler";
-import { TouchableOpacity, View } from "react-native";
-
 import { SafeAreaView } from "react-native-safe-area-context";
+import colors from "../../../res/colors";
 
 
 
@@ -28,9 +27,6 @@ const EnterUserInfoPage = () => {
   const [errors, setErrors] = React.useState({email:'', age:''});
   const [isFormValid, setisFormValid] = React.useState<boolean>(false)
   const dispatch = useDispatch();
-  // const onChangeEmail = (email: string) => {
-  //   setEmail(email);
-  // }
 
   const scrollOffsetY = new Animated.Value(0)
   const H_MAX_HEIGHT = 150;
@@ -41,6 +37,7 @@ const EnterUserInfoPage = () => {
     outputRange: [H_MAX_HEIGHT, H_MIN_HEIGHT],
     extrapolate: "clamp"
   });
+
   const fadeOutDetailOpacity = scrollOffsetY.interpolate({
     inputRange: [0, 1],
     outputRange: [1, 0],
@@ -62,10 +59,6 @@ const EnterUserInfoPage = () => {
       setisFormValid(isEmailValid);
       handleError(!isEmailValid && text.length > 0 && 'valid email (example@jolocom.com)' || '', input);
     }
-    if (input == inputs.email) {
-      handleError('You must be 18 years', 'age');
-      setisFormValid(false)
-    }
   };
   
   React.useLayoutEffect(() => {
@@ -74,7 +67,6 @@ const EnterUserInfoPage = () => {
   return (
 <SafeAreaView style={{flex:1,backgroundColor: 'black'}}>
 <KeyboardAwareView  >
-
 <Animated.View
   style={{
     left: 0,
@@ -98,14 +90,14 @@ const EnterUserInfoPage = () => {
           <Text style={{ textAlign:'center', color:"white", fontSize: 18, padding: 20 }}>{Strings.addInfoHeaderDetailMessage}</Text>
         </Animated.View>
 </Animated.View>
-    <ScrollView
-        style={{padding: 10,backgroundColor:"black"}}
+    <Animated.ScrollView
+        style={{padding: 10,  backgroundColor:colors.JOLOCOM_PRIMARY}}
         onScroll={Animated.event([
           { nativeEvent: { contentOffset: { y: scrollOffsetY } } }
         ],{useNativeDriver: false})}
         scrollEventThrottle={16}
         >
-     <View style={{height: 800}}>
+     <View style={{height:800, backgroundColor:colors.JOLOCOM_PRIMARY}}>
           <SecondaryInput
             onChangeText={text => handleOnchange(text, 'firstName')}
             onFocus={() => handleError(null, 'firstName')}
@@ -155,7 +147,7 @@ const EnterUserInfoPage = () => {
       />
       </View>
 
-    </ScrollView>
+    </Animated.ScrollView>
   
     </KeyboardAwareView>
     

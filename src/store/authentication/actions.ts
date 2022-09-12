@@ -114,7 +114,6 @@ const logout = () => async (dispatch: Function, getState: Function) => {
     let user: UserViewModel = new UserViewModel();
     user.isLoggedIn = false // TODO: Logout from JOLOCOM APi
     dispatch(loginResponseAction(user));
-    // await saveUserDataAndClearDataIfDiffUser(user.userInitial, dispatch);
   } catch (error) {
     dispatch(loginErrorAction(error));
   }

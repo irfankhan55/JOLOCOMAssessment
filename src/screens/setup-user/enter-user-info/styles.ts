@@ -9,11 +9,13 @@ export default StyleSheet.create({
     },
 
     headerTitleText:{
-      width:'65%', 
+      flex:1,
+      lineHeight:25,
       textAlign:'center',
       color:'white', 
       fontSize: 18, 
-      padding: 20,
+      paddingTop:10,
+      marginRight: 30,
       ...fonts.robotoXXXL,
     },
 
