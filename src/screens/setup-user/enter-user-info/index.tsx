@@ -179,6 +179,8 @@ const EnterUserInfoPage = () => {
             
       { showOutPut &&
       <View>
+        <IconImage iconStyle={{ alignSelf:'center', marginTop: 30 }} size={130} name={'verified'} iconSet={IconSets.LOCAL_ICON} />
+      <Text style={{ textAlign: 'center', color: "white", fontSize: 18, padding: 20 }}>{Strings.submissionResultSuccessText}</Text>
          <PrimaryButton
            disabled={false}
            title={"Scroll to top"}
