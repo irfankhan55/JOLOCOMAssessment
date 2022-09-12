@@ -17,12 +17,15 @@ import Utils from '../../../utilities/ValidationUtils'
 import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import colors from "../../../res/colors";
+import { useAnimatedRef } from "react-native-reanimated";
 
 
 
 const EnterUserInfoPage = () => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
-  
+  const scrollRef = useAnimatedRef()
+  const [showOutPut, setShowOutPut] = React.useState(false);
+  const [contentHeight, setContentHeight] = React.useState(800);
   const [inputs, setInputs] = React.useState({firstName:'', lastName: '', phone: '', email: '', age: ''});
   const [errors, setErrors] = React.useState({email:'', age:''});
   const [isFormValid, setisFormValid] = React.useState<boolean>(false)
@@ -39,8 +42,8 @@ const EnterUserInfoPage = () => {
   });
 
   const fadeOutDetailOpacity = scrollOffsetY.interpolate({
-    inputRange: [0, 1],
-    outputRange: [1, 0],
+    inputRange: [0, H_MIN_HEIGHT],
+    outputRange: [H_MIN_HEIGHT, 0],
     extrapolate: "clamp"
   });
 
@@ -48,7 +51,16 @@ const EnterUserInfoPage = () => {
     setInputs(prevState => ({...prevState, [input]: text}));
     validate(text, input)
   };
+ 
 
+  const onSubmit = () => {
+   setShowOutPut(true);
+  };
+
+  const scrollToTop = () => {
+   setContentHeight(800)
+   setShowOutPut(false);
+  };
   const handleError = (error: string, input: string) => {
     setErrors(prevState => ({...prevState, [input]: error}));
   };
@@ -60,9 +72,20 @@ const EnterUserInfoPage = () => {
       handleError(!isEmailValid && text.length > 0 && 'valid email (example@jolocom.com)' || '', input);
     }
   };
-  
+
+  React.useEffect(() => {
+    if(showOutPut){
+      scrollRef.current.scrollTo({x:0 , y: contentHeight, animated:true});
+    }else{
+      scrollRef.current.scrollTo({x:0 , y: - contentHeight, animated:true});
+    }
+   
+  },[contentHeight, showOutPut]);
+
+
   React.useLayoutEffect(() => {
     navigation.setOptions({ title: Strings.enterYourEmailAddress })
+    scrollRef.current.scrollTo({x:0 , y:contentHeight, animated:true});
   },[navigation]);
   return (
 <SafeAreaView style={{flex:1,backgroundColor: 'black'}}>
@@ -91,13 +114,15 @@ const EnterUserInfoPage = () => {
         </Animated.View>
 </Animated.View>
     <Animated.ScrollView
-        style={{padding: 10,  backgroundColor:colors.JOLOCOM_PRIMARY}}
+       
+        ref={scrollRef}
+        style={{padding: 10, backgroundColor:colors.JOLOCOM_PRIMARY}}
         onScroll={Animated.event([
           { nativeEvent: { contentOffset: { y: scrollOffsetY } } }
         ],{useNativeDriver: false})}
         scrollEventThrottle={16}
         >
-     <View style={{height:800, backgroundColor:colors.JOLOCOM_PRIMARY}}>
+     <View style={{ height: contentHeight, backgroundColor:colors.JOLOCOM_PRIMARY}}>
           <SecondaryInput
             onChangeText={text => handleOnchange(text, 'firstName')}
             onFocus={() => handleError(null, 'firstName')}
@@ -112,6 +137,7 @@ const EnterUserInfoPage = () => {
             placeholder="Last name"
         
           />
+       
          <SecondaryInput
             keyboardType={"number-pad" || "numeric"}
             onChangeText={text => handleOnchange(text, 'phone')}
@@ -139,13 +165,37 @@ const EnterUserInfoPage = () => {
     
       
       <PrimaryButton
-     
-        disabled={!isFormValid}
+      // disabled={!isFormValid}
+        disabled={false}
         title={Strings.submitButtonText}
-        onPress={() => navigation.navigate(Routes.USER_SUBMISSION_PAGE)}
+        onPress={onSubmit}
         style={styles.continueButton}
       />
+      
+ 
       </View>
+
+  
+            
+      { showOutPut &&
+      <View>
+         <PrimaryButton
+           disabled={false}
+           title={"Scroll to top"}
+           onPress={scrollToTop}
+           style={[styles.continueButton,{marginBottom:100}] }
+         />
+         <PrimaryButton
+           disabled={false}
+           title={"See Bonus tasks"}
+           onPress={()=> {navigation.navigate(Routes.USER_SUBMISSION_PAGE)}}
+           style={[styles.continueButton,{marginBottom:100}] }
+         />
+     </View>
+          }
+     
+
+     
 
     </Animated.ScrollView>
   
