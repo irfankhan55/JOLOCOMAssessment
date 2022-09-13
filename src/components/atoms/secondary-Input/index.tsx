@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TextInput, StyleSheet, KeyboardTypeOptions} from 'react-native';
+import {View, Text, TextInput, StyleSheet, KeyboardTypeOptions, TouchableOpacity, TouchableOpacityProps} from 'react-native';
 import Colors from '../../../res/colors'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles';
@@ -24,28 +24,20 @@ const SecondaryInput = ({
   onFocus,
   onChangeText,
   ...rest
-}: SecondaryInputProps) => {
+}: SecondaryInputProps & TouchableOpacityProps) => {
   const [hidePassword, setHidePassword] = React.useState(password);
   const [isFocused, setIsFocused] = React.useState(false);
   const borderColor = error
-  ? Colors.INPUT_ERROR
-  : isFocused
-  ? Colors.JOLOCOM_BLUE
-  : Colors.TEXT_SECONDARY
+                      ? Colors.INPUT_ERROR
+                      : isFocused
+                      ? Colors.JOLOCOM_BLUE
+                      : Colors.TEXT_SECONDARY
   return (
-    <View style={{marginBottom: 1}}>
-      <View
-        style={[
-          styles.inputContainer,
-          {
-            
-            borderColor:borderColor,
-            
-          },
-        ]}>
+    <View style={{marginBottom: 1}} >
+      <View style={[styles.inputContainer,{borderColor:borderColor}]}>
         <Icon
           name={iconName}
-          style={{color:borderColor, fontSize: 22, marginRight: 10}}
+          style={{color:borderColor, fontSize: 22, marginHorizontal: 10}}
         />
         <TextInput
           autoCorrect={false}
@@ -58,10 +50,11 @@ const SecondaryInput = ({
           onBlur={() => setIsFocused(false)}
           secureTextEntry={hidePassword}
           placeholderTextColor={Colors.TEXT_SECONDARY}
-          style={{ color: Colors.JOLOCOM_BLUE, flex: 1}}
+          style={{height:'100%', color: Colors.JOLOCOM_BLUE, flex: 1}}
           onChangeText={onChangeText}
           {...rest}
         />
+  
         {password && (
           <Icon
             onPress={() => setHidePassword(!hidePassword)}

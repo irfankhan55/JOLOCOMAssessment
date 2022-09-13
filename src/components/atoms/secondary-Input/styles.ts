@@ -17,7 +17,6 @@ export default StyleSheet.create({
         backgroundColor: colors.JOLOCOM_PRIMARY_INPUT_BG,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 15,
         borderWidth: 2,
       },
 })
