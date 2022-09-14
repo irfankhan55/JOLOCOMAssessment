@@ -15,11 +15,12 @@ import { KeyboardAwareView } from "../../../components/atoms/keyboard-aware-view
 import Utils from '../../../utilities/ValidationUtils'
 import { SafeAreaView } from "react-native-safe-area-context";
 import colors from "../../../res/colors";
-import Animated, {useAnimatedRef, Extrapolate, useAnimatedStyle, useSharedValue, withTiming,  } from "react-native-reanimated";
+import Animated, {useAnimatedRef, Extrapolate, useAnimatedStyle, useSharedValue, withTiming, color,  } from "react-native-reanimated";
 
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 const scrollOffsetY = new Animated.Value(0)
-const H_MAX_HEIGHT = 150;
-const H_MIN_HEIGHT = 60;
+const H_MAX_HEIGHT = 120;
+const H_MIN_HEIGHT =  45;
 
 const EnterUserInfoPage = () => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
@@ -31,10 +32,9 @@ const EnterUserInfoPage = () => {
   const [isFormValid, setisFormValid] = React.useState<boolean>(false)
   // const dispatch = useDispatch();
   const opacity = useSharedValue(0);
-  const H_SCROLL_DISTANCE = H_MAX_HEIGHT - H_MIN_HEIGHT;
   
   const headerScrollHeight = scrollOffsetY.interpolate({
-    inputRange: [0, H_SCROLL_DISTANCE],
+    inputRange: [0, H_MIN_HEIGHT],
     outputRange: [H_MAX_HEIGHT, H_MIN_HEIGHT],
     extrapolate: Extrapolate.CLAMP,
     
@@ -46,7 +46,7 @@ const EnterUserInfoPage = () => {
     }},[scrollOffsetY]);
 
   const detailLabelOpacityOpacity = scrollOffsetY.interpolate({
-    inputRange: [0, 40],
+    inputRange: [0, 30],
     outputRange: [1, 0],
     extrapolate: Extrapolate.CLAMP,
   });
@@ -78,7 +78,7 @@ const EnterUserInfoPage = () => {
   };
 
   React.useEffect(() => {
-    opacity.value = withTiming(1, {duration: 1000})
+    opacity.value = withTiming(1, {duration: 2000})
     scrollRef.current.getNode().scrollTo({ x: 0, y: showOutPut ? contentHeight : -contentHeight, animated: true });
   }, [contentHeight, showOutPut, scrollOffsetY]);
 
@@ -87,8 +87,8 @@ const EnterUserInfoPage = () => {
     scrollRef.current.getNode().scrollTo({ x: 0, y: contentHeight, animated: true });
   }, [navigation]);
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
-      <KeyboardAwareView  >
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.JOLOCOM_PRIMARY }}>
+      <KeyboardAwareView style={{padding:0}}  >
         <Animated.View
           style={{
             left: 0,
@@ -96,25 +96,27 @@ const EnterUserInfoPage = () => {
             top: 10,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: "black",
+            backgroundColor: colors.JOLOCOM_PRIMARY,
             height: headerScrollHeight,
           }}
         >
-          <View style={{ width: '100%', justifyContent: 'flex-start', backgroundColor: 'black', flexDirection: 'row' }}>
-            <TouchableOpacity
+          <View style={{ height: H_MIN_HEIGHT, width: '100%', backgroundColor: colors.JOLOCOM_PRIMARY, flexDirection: 'row' }}>
+            <AnimatedTouchable
               onPress={() => navigation.goBack()}
-              style={{ width: '10%', alignSelf: 'center', marginHorizontal: 10, backgroundColor: 'black' }}>
+              style={[{   width: '10%', alignSelf: 'center', marginHorizontal: 10, backgroundColor: 'black' }, {opacity:scrollOffsetY }]}>
               <IconImage size={26} name={'backWhite'} iconSet={IconSets.LOCAL_ICON} />
-            </TouchableOpacity>
+            </AnimatedTouchable>
             <Text style={styles.headerTitleText}> {Strings.addInfoHeaderTitle} </Text>
           </View>
-          <Animated.View style={[{backgroundColor:colors.JOLOCOM_PRIMARY},detailLabelFadeInAnimation, {opacity:detailLabelOpacityOpacity}] }>
-            <Text style={{ textAlign: 'center', color: "white", fontSize: 18, padding: 20 }}>{Strings.addInfoHeaderDetailMessage}</Text>
-          </Animated.View>
+       
+           <Animated.Text style={[{ backgroundColor:colors.JOLOCOM_PRIMARY, width:'100%', textAlign: 'center', color: "white", fontSize: 18, paddingHorizontal: 20},detailLabelFadeInAnimation, {opacity:detailLabelOpacityOpacity }] }>
+           {Strings.addInfoHeaderDetailMessage}
+         </Animated.Text>
+
         </Animated.View>
         <Animated.ScrollView
           ref={scrollRef}
-          style={{ padding: 10, paddingTop: 30, backgroundColor: colors.JOLOCOM_PRIMARY }}
+          style={{ paddingHorizontal: 10, paddingTop: 30,  backgroundColor: colors.JOLOCOM_PRIMARY }}
           onScroll={Animated.event([
             { nativeEvent: { contentOffset: { y: scrollOffsetY } } }
           ], { useNativeDriver: true })}
