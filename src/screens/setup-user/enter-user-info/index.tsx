@@ -1,10 +1,8 @@
 import * as React from "react";
 import {
   Text,
-  Animated,
   TouchableOpacity,
-  View,
-  ScrollView
+  View
 } from "react-native"
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -17,7 +15,7 @@ import { KeyboardAwareView } from "../../../components/atoms/keyboard-aware-view
 import Utils from '../../../utilities/ValidationUtils'
 import { SafeAreaView } from "react-native-safe-area-context";
 import colors from "../../../res/colors";
-import { useAnimatedRef } from "react-native-reanimated";
+import Animated, {useAnimatedRef, Extrapolate, useAnimatedStyle, useSharedValue, withTiming,  } from "react-native-reanimated";
 
 const scrollOffsetY = new Animated.Value(0)
 const H_MAX_HEIGHT = 150;
@@ -25,25 +23,32 @@ const H_MIN_HEIGHT = 60;
 
 const EnterUserInfoPage = () => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
-  const scrollRef = useAnimatedRef<ScrollView>()
+  const scrollRef = useAnimatedRef<Animated.ScrollView>()
   const [showOutPut, setShowOutPut] = React.useState(false);
   const [contentHeight, setContentHeight] = React.useState(800);
   const [inputs, setInputs] = React.useState({ firstName: '', lastName: '', phone: '', email: '', age: '' });
   const [errors, setErrors] = React.useState({ email: '', age: '' });
   const [isFormValid, setisFormValid] = React.useState<boolean>(false)
   // const dispatch = useDispatch();
-
+  const opacity = useSharedValue(0);
   const H_SCROLL_DISTANCE = H_MAX_HEIGHT - H_MIN_HEIGHT;
+  
   const headerScrollHeight = scrollOffsetY.interpolate({
     inputRange: [0, H_SCROLL_DISTANCE],
     outputRange: [H_MAX_HEIGHT, H_MIN_HEIGHT],
-    extrapolate: "clamp"
+    extrapolate: Extrapolate.CLAMP,
+    
   });
 
-  const fadeOutDetailOpacity = scrollOffsetY.interpolate({
+  const detailLabelFadeInAnimation = useAnimatedStyle(() => { 
+    return{
+      opacity: opacity.value
+    }},[scrollOffsetY]);
+
+  const detailLabelOpacityOpacity = scrollOffsetY.interpolate({
     inputRange: [0, 40],
     outputRange: [1, 0],
-    extrapolate: "clamp"
+    extrapolate: Extrapolate.CLAMP,
   });
 
   const handleOnchange = (text: string, input: string) => {
@@ -73,12 +78,13 @@ const EnterUserInfoPage = () => {
   };
 
   React.useEffect(() => {
-    scrollRef.current.scrollTo({ x: 0, y: showOutPut ? contentHeight : -contentHeight, animated: true });
-  }, [contentHeight, showOutPut]);
+    opacity.value = withTiming(1, {duration: 1000})
+    scrollRef.current.getNode().scrollTo({ x: 0, y: showOutPut ? contentHeight : -contentHeight, animated: true });
+  }, [contentHeight, showOutPut, scrollOffsetY]);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({ title: Strings.enterYourEmailAddress })
-    scrollRef.current.scrollTo({ x: 0, y: contentHeight, animated: true });
+    scrollRef.current.getNode().scrollTo({ x: 0, y: contentHeight, animated: true });
   }, [navigation]);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
@@ -102,17 +108,16 @@ const EnterUserInfoPage = () => {
             </TouchableOpacity>
             <Text style={styles.headerTitleText}> {Strings.addInfoHeaderTitle} </Text>
           </View>
-          <Animated.View style={{ opacity: fadeOutDetailOpacity }}>
+          <Animated.View style={[{backgroundColor:colors.JOLOCOM_PRIMARY},detailLabelFadeInAnimation, {opacity:detailLabelOpacityOpacity}] }>
             <Text style={{ textAlign: 'center', color: "white", fontSize: 18, padding: 20 }}>{Strings.addInfoHeaderDetailMessage}</Text>
           </Animated.View>
         </Animated.View>
         <Animated.ScrollView
-
           ref={scrollRef}
           style={{ padding: 10, paddingTop: 30, backgroundColor: colors.JOLOCOM_PRIMARY }}
           onScroll={Animated.event([
             { nativeEvent: { contentOffset: { y: scrollOffsetY } } }
-          ], { useNativeDriver: false })}
+          ], { useNativeDriver: true })}
           scrollEventThrottle={16}
         >
           <View style={{ height: contentHeight, backgroundColor: colors.JOLOCOM_PRIMARY }}>
