@@ -78,6 +78,7 @@ const EnterUserInfoPage = () => {
   };
 
   React.useEffect(() => {
+    scrollOffsetY.setValue(0)
     opacity.value = withTiming(1, {duration: 2000})
     scrollRef.current.getNode().scrollTo({ x: 0, y: showOutPut ? contentHeight : -contentHeight, animated: true });
   }, [contentHeight, showOutPut, scrollOffsetY]);
