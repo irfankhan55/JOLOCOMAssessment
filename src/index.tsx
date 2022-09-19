@@ -7,10 +7,7 @@ import AuthNavigator from './navigators/AuthNavigator';
 import { loggedInUser } from './store/authentication/selectors';
 import { store } from './store/configureStore';
 import { StoreState } from './store/storeState';
-import { LogBox } from 'react-native';
-LogBox.ignoreLogs([
-  'ReactNativeFiberHostComponent: Calling getNode() on the ref of an Animated component is no longer necessary. You can now directly use the ref instead. This method will be removed in a future release.',
-]);
+
 export default function Router() {
     const user = useSelector((state: StoreState) => loggedInUser(state));
     const isUserLoggedIn = user?.isLoggedIn

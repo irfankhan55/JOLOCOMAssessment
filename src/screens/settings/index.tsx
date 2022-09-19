@@ -8,7 +8,7 @@ const SettingsScreen = () => {
   return (
     <View style={styles.container}>
         <WebView
-        source={{ uri: 'https://coinmarketcap.com/currencies/bitcoin/' }}
+        source={{ uri: 'https://jolocom.io/' }}
         style={{ marginTop: 20 }}
       />
    

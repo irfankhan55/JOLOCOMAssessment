@@ -18,11 +18,13 @@ import colors from "../../../res/colors";
 import Animated, {useAnimatedRef, Extrapolate, useAnimatedStyle, useSharedValue, withTiming, color,  } from "react-native-reanimated";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+// const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 const scrollOffsetY = new Animated.Value(0)
 const H_MAX_HEIGHT = 120;
 const H_MIN_HEIGHT =  45;
 
 const EnterUserInfoPage = () => {
+ 
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const scrollRef = useAnimatedRef<Animated.ScrollView>()
   const [showOutPut, setShowOutPut] = React.useState(false);
@@ -31,25 +33,42 @@ const EnterUserInfoPage = () => {
   const [errors, setErrors] = React.useState({ email: '', age: '' });
   const [isFormValid, setisFormValid] = React.useState<boolean>(false)
   // const dispatch = useDispatch();
-  const opacity = useSharedValue(0);
-  
+
+  // fire and forget animations (Animated styles)
+  // const opacity = useSharedValue(0);
+  // const detailLabelFadeInAnimation = useAnimatedStyle(() => { 
+  //   return{
+  //     opacity: opacity.value
+  //   }},[]);
+
+  // gesture animation with scroll Y
   const headerScrollHeight = scrollOffsetY.interpolate({
     inputRange: [0, H_MIN_HEIGHT],
     outputRange: [H_MAX_HEIGHT, H_MIN_HEIGHT],
-    extrapolate: Extrapolate.CLAMP,
-    
+    extrapolate: Extrapolate.CLAMP,    
   });
 
-  const detailLabelFadeInAnimation = useAnimatedStyle(() => { 
-    return{
-      opacity: opacity.value
-    }},[scrollOffsetY]);
-
-  const detailLabelOpacityOpacity = scrollOffsetY.interpolate({
+  const detailLabelOpacity = scrollOffsetY.interpolate({
     inputRange: [0, 30],
     outputRange: [1, 0],
     extrapolate: Extrapolate.CLAMP,
   });
+
+  const backButtonOpacity = scrollOffsetY.interpolate({
+    inputRange: [0, 30],
+    outputRange: [0, 1],
+    extrapolate: Extrapolate.CLAMP,
+  });
+
+  const rotate = scrollOffsetY.interpolate({
+    inputRange: [20, 30],
+    outputRange: [ "-90deg" , "0deg"],
+    extrapolate: Extrapolate.CLAMP,
+  });
+
+
+
+
 
   const handleOnchange = (text: string, input: string) => {
     setInputs(prevState => ({ ...prevState, [input]: text }));
@@ -65,6 +84,7 @@ const EnterUserInfoPage = () => {
     setContentHeight(800)
     setShowOutPut(false);
   };
+
   const handleError = (error: string, input: string) => {
     setErrors(prevState => ({ ...prevState, [input]: error }));
   };
@@ -79,13 +99,11 @@ const EnterUserInfoPage = () => {
 
   React.useEffect(() => {
     scrollOffsetY.setValue(0)
-    opacity.value = withTiming(1, {duration: 2000})
-    scrollRef.current.getNode().scrollTo({ x: 0, y: showOutPut ? contentHeight : -contentHeight, animated: true });
+    scrollRef.current.scrollTo({ x: 0, y: showOutPut ? contentHeight : -contentHeight, animated: true });
   }, [contentHeight, showOutPut, scrollOffsetY]);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({ title: Strings.enterYourEmailAddress })
-    scrollRef.current.getNode().scrollTo({ x: 0, y: contentHeight, animated: true });
   }, [navigation]);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.JOLOCOM_PRIMARY }}>
@@ -104,13 +122,15 @@ const EnterUserInfoPage = () => {
           <View style={{ height: H_MIN_HEIGHT, width: '100%', backgroundColor: colors.JOLOCOM_PRIMARY, flexDirection: 'row' }}>
             <AnimatedTouchable
               onPress={() => navigation.goBack()}
-              style={[{   width: '10%', alignSelf: 'center', marginHorizontal: 10, backgroundColor: 'black' }, {opacity:scrollOffsetY }]}>
+              style={[{width: '10%', alignSelf: 'center', marginHorizontal: 10, backgroundColor: 'black' },
+               {opacity: backButtonOpacity },
+               {transform: [{ rotate: rotate }]}]}>
               <IconImage size={26} name={'backWhite'} iconSet={IconSets.LOCAL_ICON} />
             </AnimatedTouchable>
             <Text style={styles.headerTitleText}> {Strings.addInfoHeaderTitle} </Text>
           </View>
        
-           <Animated.Text style={[{ backgroundColor:colors.JOLOCOM_PRIMARY, width:'100%', textAlign: 'center', color: "white", fontSize: 18, paddingHorizontal: 20},detailLabelFadeInAnimation, {opacity:detailLabelOpacityOpacity }] }>
+           <Animated.Text style={[{ backgroundColor:colors.JOLOCOM_PRIMARY, width:'100%', textAlign: 'center', color: "white", fontSize: 18, paddingHorizontal: 20}, {opacity:detailLabelOpacity }] }>
            {Strings.addInfoHeaderDetailMessage}
          </Animated.Text>
 
@@ -180,11 +200,11 @@ const EnterUserInfoPage = () => {
                 disabled={false}
                 title={"Scroll to top"}
                 onPress={scrollToTop}
-                style={[styles.continueButton, { marginBottom: 100 }]}
+                style={[styles.continueButton, { marginBottom: 10 }]}
               />
               <PrimaryButton
                 disabled={false}
-                title={"See Bonus tasks"}
+                title={"More Animations"}
                 onPress={() => { navigation.navigate(Routes.USER_SUBMISSION_PAGE) }}
                 style={[styles.continueButton, { marginBottom: 100 }]}
               />
