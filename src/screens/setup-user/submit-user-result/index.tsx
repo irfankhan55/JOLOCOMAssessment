@@ -11,8 +11,13 @@ import styles from "./styles";
 import Strings from "../../../res/i18n";
 import { useDispatch } from "react-redux";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ScrollView } from "react-native-gesture-handler";
+import Animated, {
+  useAnimatedScrollHandler,
+  useSharedValue,
+} from 'react-native-reanimated';
+import { Page } from "../../../components/pages/page";
 
+const WORDS = ["Jolocom", 'Mobile', 'mobile', 'animations'];
 
 const TITLES = [
   'Open source solutions for people and organizations',
@@ -34,19 +39,48 @@ const UserSubmissionPage = () => {
   const TASKS: TaskInterface[] = TITLES.map((title, index) => ({ title, index }));
   const [tasks, setTasks] = React.useState(TASKS);
 
+  const translateX = useSharedValue(0);
+  const scrollHandler = useAnimatedScrollHandler((event) => {
+    translateX.value = event.contentOffset.x;
+  });
+
   const onDismiss = React.useCallback((task: TaskInterface) => {
     setTasks((tasks) => tasks.filter((item) => item.index !== task.index));
   }, []);
 
-  const scrollRef = React.useRef(null);
-  React.useLayoutEffect(() => {
-    navigation.setOptions({ title: Strings.submitButtonText })
-  }, [navigation]);
+  // const scrollRef = React.useRef(null);
+  // React.useLayoutEffect(() => {
+  //   navigation.setOptions({ title: Strings.submitButtonText })
+  // }, [navigation]);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
+   <Animated.ScrollView
+      onScroll={scrollHandler}
+      pagingEnabled
+      scrollEventThrottle={16}
+      horizontal
+      style={styles.container}
+    >
+      {WORDS.map((title, index) => {
+        return (
+          <Page
+            key={index.toString()}
+            title={title}
+            translateX={translateX}
+            index={index}
+          />
+        );
+      })}
+    </Animated.ScrollView>
+    <PrimaryButton
+        disabled={false}
+        title={Strings.continue}
+        onPress={() => navigation.navigate(Routes.SELECT_COUNTRY_SCREEN)}
+        style={styles.continueButton}
+      />
 
-      <ScrollView ref={scrollRef} style={{ flex: 1 }}>
+      {/* <ScrollView ref={scrollRef} style={{ flex: 1 }}>
         {tasks.map((task) => (
           <SwipeableListItem
             simultaneousHandlers={scrollRef}
@@ -61,13 +95,8 @@ const UserSubmissionPage = () => {
         onPress={() => navigation.goBack()}
         style={styles.startOverButton}
       />
-      <PrimaryButton
-        disabled={false}
-        title={Strings.continue}
-        onPress={() => navigation.navigate(Routes.SELECT_COUNTRY_SCREEN)}
-        style={styles.continueButton}
-      />
-      </ScrollView>
+   
+      </ScrollView> */}
 
       
  
