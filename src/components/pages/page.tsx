@@ -8,7 +8,7 @@ import Animated, {
 
 const { height, width } = Dimensions.get('window');
 
-const SIZE = width * 0.7;
+const SIZE = width ;
 
 interface PageProps {
   index: number;
@@ -17,7 +17,7 @@ interface PageProps {
 }
 
 const Page: React.FC<PageProps> = ({ index, translateX, title }) => {
-  const inputRange = [(-index - 1) * width, index * width, (index + 1) * width];
+  const inputRange = [(-index -1 ) * width , index * width, (index + 1) * width];
 
   const rStyle = useAnimatedStyle(() => {
     const scale = interpolate(
@@ -64,37 +64,38 @@ const Page: React.FC<PageProps> = ({ index, translateX, title }) => {
   return (
     <View
       style={[
-        styles.container,
+        // styles.container,
         { backgroundColor: `rgba(0,0,256, 0.${index + 2})` },
       ]}
     >
-      <Animated.View style={[styles.square, rStyle]} />
-      <Animated.View style={[styles.textContainer, rTextStyle]}>
+        <Animated.View style={[styles.textContainer, rTextStyle]}>
         <Text style={styles.text}>{title}</Text>
       </Animated.View>
+      <Animated.View style={[styles.square, rStyle]} />
+    
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width,
-    height,
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex:1,
+
+
   },
   square: {
+    alignSelf:'center',
     width: SIZE,
     height: SIZE,
-    backgroundColor: 'rgba(0, 0, 256, 0.4)',
+    backgroundColor: 'red',
   },
   text: {
-    fontSize: 60,
+    fontSize: 30,
     color: 'white',
     textTransform: 'uppercase',
-    fontWeight: '700',
+    fontWeight: '800',
   },
-  textContainer: { position: 'absolute' },
+  textContainer: { margin: 30,  },
 });
 
 export { Page };

@@ -51,7 +51,7 @@ const AuthNavigator = () => {
       />
      <Stack.Screen name="UserSubmissionPage" component={UserSubmissionPage}
         options={{
-          headerShown: false,
+          headerShown: true,
           title: Strings.enterYourEmailAddress,
           headerStyle: [styles.headerStyle],
           headerLeft: headerLeft,

@@ -1,6 +1,6 @@
 import * as React from "react";
 import {
-  Text,
+  Text, View,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -17,7 +17,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { Page } from "../../../components/pages/page";
 
-const WORDS = ["Jolocom", 'Mobile', 'mobile', 'animations'];
+const WORDS = ["Jolocom", 'Animations', 'mobile', 'React Native', 'Animations', 'mobile', 'React Native'];
 
 const TITLES = [
   'Open source solutions for people and organizations',
@@ -54,7 +54,7 @@ const UserSubmissionPage = () => {
   // }, [navigation]);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
+    <View style={styles.mainContainer}>
    <Animated.ScrollView
       onScroll={scrollHandler}
       pagingEnabled
@@ -100,7 +100,7 @@ const UserSubmissionPage = () => {
 
       
  
-    </SafeAreaView>
+    </View>
 
 
   );

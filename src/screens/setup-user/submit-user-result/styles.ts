@@ -4,8 +4,11 @@ import colors from "../../../res/colors";
 
 
 export default StyleSheet.create({
+  mainContainer: {
+    flex: 1, backgroundColor: colors.JOLOCOM_PRIMARY 
+  },
     headerStyle:{
-      backgroundColor: colors.JOLOCOM_PRIMARY_WHITE,
+      backgroundColor: 'green',
     },
 
     headerTitleText:{
@@ -13,27 +16,28 @@ export default StyleSheet.create({
       textAlign:'center',
       color:'white', 
       fontSize: 18, 
-      padding: 20,
       ...fonts.robotoXXXL,
     },
 
     continueButton:{
+      alignSelf:'center',
       flexDirection:'column',
-      marginTop:30,
-      width:'100%'
+      marginVertical:20,
+      width:'80%'
     },
 
     startOverButton:{
       backgroundColor:colors.JOLOCOM_PRIMARY_INPUT_BG,
       flexDirection:'column',
-      marginTop:30,
+      marginTop:10,
       width:'100%'
     },
 
     container: {
       flex:1,
-      backgroundColor: colors.JOLOCOM_PRIMARY_WHITE,
-      padding:24,
+      marginHorizontal: 2,
+      // backgroundColor: colors.JOLOCOM_PRIMARY_WHITE,
+   
     },
 
   });
