@@ -35,7 +35,7 @@ interface TaskInterface {
 
 const UserSubmissionPage = () => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const TASKS: TaskInterface[] = TITLES.map((title, index) => ({ title, index }));
   const [tasks, setTasks] = React.useState(TASKS);
 

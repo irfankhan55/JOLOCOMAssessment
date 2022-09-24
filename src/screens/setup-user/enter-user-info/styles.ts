@@ -5,18 +5,18 @@ import colors from "../../../res/colors";
 
 export default StyleSheet.create({
     headerStyle:{
-      backgroundColor: colors.JOLOCOM_PRIMARY_WHITE,
+      flex:1,
+     
+      backgroundColor:'red',
     },
 
     headerTitleText:{
       flex:1,
-      lineHeight:25,
-      textAlign:'center',
+      height:'100%',
+      textAlign: 'center',
       color:'white', 
-      fontSize: 18, 
-      paddingTop:10,
-      marginRight: 30,
-      ...fonts.robotoXXXL,
+      marginRight:20 ,
+      ...fonts.boldXXL,
     },
 
     continueButton:{

@@ -25,11 +25,12 @@ export default StyleSheet.create({
       width:'100%'
     },
     container: {
+      height:'100%',
       flex: 1,
       backgroundColor: colors.JOLOCOM_PRIMARY,
       justifyContent: 'flex-start',
       alignItems: "center",
-      paddingTop: 70
+  
      
     }
   });
